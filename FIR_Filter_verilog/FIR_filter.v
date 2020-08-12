@@ -1,22 +1,6 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2020/07/21 16:22:31
-// Design Name: 
-// Module Name: FIR_filter
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
+/*文件中的coef系数由matlab的fdatool工具箱产生，并实现浮点数转定点数*/
 //////////////////////////////////////////////////////////////////////////////////
 
 
