@@ -2,4 +2,4 @@
 
 
 
-·modulation and demodulation system：对调制与解调系统的实现，以及输入vivado的数据转化，使用MATLAB编程
+·modulation and demodulation system：对调制与解调系统的实现，以及输入vivado的数据转化，使用MATLAB完成
