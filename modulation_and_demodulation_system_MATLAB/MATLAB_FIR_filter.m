@@ -1,7 +1,9 @@
+%æ—¶åŸŸå›¾åˆ†è¾¨ç‡è¾ƒå·®ï¼Œä¸»è¦è§‚å¯Ÿé¢‘åŸŸå›¾æ»¤æ³¢å‰åçš„å˜åŒ–
+%è°ƒåˆ¶å‚è€ƒäº†https://www.jianshu.com/p/bb7291448a9fä¸­æè¿°çš„æ–¹æ³•
 Ka=0.1;
 A0=0;
 Fs=48000;
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%»ù²¨ĞÅºÅµÄÉú³É%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%åŸºæ³¢ä¿¡å·çš„ç”Ÿæˆ%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Am = 1;
 fa = 1000;
 Ts = 1/Fs;
@@ -14,7 +16,7 @@ title('Fundamental signal');
 [YfreqDomain,frequencyRange] = centeredFFT(ym,Fs);
 subplot(2,1,2)
 stem(frequencyRange,abs(YfreqDomain));
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ÔØ²¨ĞÅºÅµÄÉú³É%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%è½½æ³¢ä¿¡å·çš„ç”Ÿæˆ%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Ac = 1;
 fc = fa*10;
 Tc = 1/fc;
@@ -26,7 +28,7 @@ title('Carrier signal');
 [YfreqDomain,frequencyRange] = centeredFFT(yc,Fs);
 subplot(2,1,2)
 stem(frequencyRange,abs(YfreqDomain));
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Éú³Éµ÷ÖÆĞÅºÅ%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ç”Ÿæˆè°ƒåˆ¶ä¿¡å·%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 y = Ac*(A0 + Ka*ym).*yc;figure(3)
 subplot(2,1,1);
 plot(t,y);
@@ -34,7 +36,7 @@ title ( 'Amplitude Modulated signal');
 [YfreqDomain,frequencyRange] = centeredFFT(y,Fs);
 subplot(2,1,2)
 stem(frequencyRange,abs(YfreqDomain));
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%¶Ôµ÷ÖÆĞÅºÅ½âµ÷%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%å¯¹è°ƒåˆ¶ä¿¡å·è§£è°ƒ%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 z=y.*yc;
 figure(4);
 subplot(2,1,1);
@@ -43,16 +45,16 @@ title ( 'Amplitude deModulated signal');
 [YfreqDomain,frequencyRange] = centeredFFT(z,Fs);
 subplot(2,1,2);
 stem(frequencyRange,abs(YfreqDomain));
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ÂË²¨Æ÷²úÉú%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%matlabÖ±½ÓÂË²¨%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%æ»¤æ³¢å™¨äº§ç”Ÿ%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%matlabç›´æ¥æ»¤æ³¢%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 re_signal = filter(Num,1, z);
 figure(5)
 subplot(2,1,1);
-plot(t,re_signal);xlabel('filtered signal aftre demodulated');%µÃµ½ÂË²¨ºóµÄÍ¼Ïñ
+plot(t,re_signal);xlabel('filtered signal aftre demodulated');%å¾—åˆ°æ»¤æ³¢åçš„å›¾åƒ
 [YfreqDomain,frequencyRange] = centeredFFT(re_signal,Fs);
 subplot(2,1,2)
 stem(frequencyRange,abs(YfreqDomain));
-%%%%%%%%%%%%%%%%%%%%%%%%%%%Éú³É¸¡µãÊı×ª¶¨µãÊıµÄÎÄ¼ş%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%ç”Ÿæˆæµ®ç‚¹æ•°è½¬å®šç‚¹æ•°çš„æ–‡ä»¶%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 signal = round(z * 2^14);
 coef = round(Num * 2^16);
 figure(6);
@@ -60,7 +62,7 @@ subplot(211);plot(t,signal);xlabel('signal input');
 f = fopen('input.txt' , 'w');
 fprintf(f ,'%g\n' , signal');
 fclose(f);
-%%%%%%%%%%%%%%%%%%%%%%%%%%Éú³ÉĞ´ÈëvivadoµÄ²¹ÂëÎÄ¼ş%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%ç”Ÿæˆå†™å…¥vivadoçš„è¡¥ç æ–‡ä»¶%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 signal_trans2c = dec2bin(signal + 2^16 * (signal<0) , 16);
 signal_trans2c = signal_trans2c';
 fdata = fopen('input.mem' , 'wb');
@@ -71,9 +73,9 @@ for index = 1:length(signal_scale)
     fprintf(fdata , '\r\n'); % entering a enter and new a line
 end
 fclose(fdata);
-%%%%%%%%%%%%%%%%%%%%%%%%%%¶ÁÈëÂË²¨ºóµÄÊı¾İÎÄ¼ş²¢½øĞĞ¿ÉÊÓ»¯%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%è¯»å…¥æ»¤æ³¢åçš„æ•°æ®æ–‡ä»¶å¹¶è¿›è¡Œå¯è§†åŒ–%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fid = fopen('G:\vivado\Free_Design\Free_Design.sim\sim_1\behav\xsim\dataout1.txt');
-a = textscan(fid, '%d');%ÒÔÊ®½øÖÆ·½Ê½¶ÁÈë
+a = textscan(fid, '%d');%ä»¥åè¿›åˆ¶æ–¹å¼è¯»å…¥
 fclose(fid);
 figure(7);
 subplot(211);
