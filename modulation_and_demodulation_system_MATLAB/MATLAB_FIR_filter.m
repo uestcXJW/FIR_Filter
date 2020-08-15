@@ -7,7 +7,7 @@ Fs=48000;
 Am = 1;
 fa = 1000;
 Ts = 1/Fs;
-t = 0:Ts:1-Ts;
+t = 0:Ts:0.01;
 ym = Am*sin(2*pi*fa*t);
 figure(1);
 subplot(2,1,1);
@@ -66,9 +66,9 @@ fclose(f);
 signal_trans2c = dec2bin(signal + 2^16 * (signal<0) , 16);
 signal_trans2c = signal_trans2c';
 fdata = fopen('input.mem' , 'wb');
-for index = 1:length(signal_scale)
-    for i = 1:WIDTH
-       fprintf( fdata ,'%s' , signal_trans2c((index-1) * WIDTH + i)); 
+for index = 1:length(signal)
+    for i = 1:16
+       fprintf( fdata ,'%s' , signal_trans2c((index-1) * 16 + i)); 
     end
     fprintf(fdata , '\r\n'); % entering a enter and new a line
 end
